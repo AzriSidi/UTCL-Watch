@@ -10,6 +10,7 @@
     <string name="loc">LOCATION</string>
     <string name="email">EMAIL</string>
     <string name="prob">TYPE OF PROBLEM : </string>
+    <string name="other">OTHER</string>
     <string name="sub">Submit</string>
     <!--feedback_spinner-->
     <string-array name="problems_array">
