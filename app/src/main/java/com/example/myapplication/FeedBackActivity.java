@@ -111,7 +111,7 @@ public class FeedBackActivity extends AppCompatActivity {
         try {
             JSONObject jsonObject = new JSONObject(response);
             message = jsonObject.getString("message");
-            Toast.makeText(this,"Submitted "+message, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Message: "+message, Toast.LENGTH_SHORT).show();
         } catch (JSONException e) {
             e.printStackTrace();
         }
