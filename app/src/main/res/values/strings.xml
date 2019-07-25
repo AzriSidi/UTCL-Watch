@@ -2,6 +2,8 @@
     <string name="app_name">UTLC WATCH</string>
     <string name="action_settings">Settings</string>
     <string name="online">Online Learning\nQuick FeedBack</string>
+    <string name="online1">Online Learning Quick FeedBack</string>
+    <string name="fill_form">File in all field in the form.</string>
     <string name="aca">AcaProf</string>
     <string name="utlc">UTLC Analytics</string>
     <string name="title_activity_feed_back">Sign in</string>
@@ -10,7 +12,7 @@
     <string name="loc">LOCATION</string>
     <string name="email">EMAIL</string>
     <string name="prob">TYPE OF PROBLEM : </string>
-    <string name="other">OTHER</string>
+    <string name="others">OTHERS</string>
     <string name="sub">Submit</string>
     <!--feedback_spinner-->
     <string-array name="problems_array">
