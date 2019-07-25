@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -64,25 +66,21 @@ public class FeedBackActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                submitData();
-                refreshPage();
+             submitData();
+             refreshPage();
             }
         });
     }
 
     private void submitData() {
-        id = et.getText().toString();
-        loc = et2.getText().toString();
-        email = et3.getText().toString();
-        spinnerText = mySpinner.getSelectedItem().toString();
-        others = et4.getText().toString();
-
+        editTextGetText();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         parseData(response);
                         Log.d("onResponse",response);
+                        sendEmail();
                     }
                 },
                 new Response.ErrorListener() {
@@ -117,6 +115,32 @@ public class FeedBackActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("IntentReset")
+    private void sendEmail() {
+        editTextGetText();
+        Log.i("Send email", "");
+        String[] TO = {"indieazri@gmail.com"};
+        String[] CC = {""};
+        String message = "Id: "+id+"\nLocation: "+loc+"\nEmail: "+email+"\nProblem: "+
+                spinnerText+"\nOther: "+others;
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Send Feedback");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, message);
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+            Log.i("Finished sending email", "");
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void otherEditText() {
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -137,6 +161,14 @@ public class FeedBackActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void editTextGetText(){
+        id = et.getText().toString();
+        loc = et2.getText().toString();
+        email = et3.getText().toString();
+        spinnerText = mySpinner.getSelectedItem().toString();
+        others = et4.getText().toString();
     }
 
     private void refreshPage(){
