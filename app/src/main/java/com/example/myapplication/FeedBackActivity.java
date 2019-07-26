@@ -1,8 +1,6 @@
 package com.example.myapplication;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -80,7 +78,6 @@ public class FeedBackActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         parseData(response);
                         Log.d("onResponse",response);
-                        sendEmail();
                     }
                 },
                 new Response.ErrorListener() {
@@ -97,6 +94,7 @@ public class FeedBackActivity extends AppCompatActivity {
                 params.put("email",email);
                 params.put("problem_type",spinnerText);
                 params.put("other",others);
+                //sendEmail();
                 return params;
             }
         };
@@ -115,7 +113,7 @@ public class FeedBackActivity extends AppCompatActivity {
         }
     }
 
-    @SuppressLint("IntentReset")
+    /*@SuppressLint("IntentReset")
     private void sendEmail() {
         editTextGetText();
         Log.i("Send email", "");
@@ -139,7 +137,7 @@ public class FeedBackActivity extends AppCompatActivity {
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
     private void otherEditText() {
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
